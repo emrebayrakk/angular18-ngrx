@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { BasketModel } from '../../../models/basket.model';
+import { Stores } from '../../../state/stores';
 
 @Component({
   selector: 'app-navbar',
@@ -16,7 +17,7 @@ export class NavbarComponent implements OnInit {
   baskets: BasketModel[];
 
   constructor(
-    private store: Store<{ "baskets": BasketModel[] }>
+    private store: Store<Stores["baskets"]>
   ) {
     this.store.select("baskets").subscribe(res=>{
       this.basketCount = res.length;

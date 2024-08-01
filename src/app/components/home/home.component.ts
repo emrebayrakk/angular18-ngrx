@@ -4,6 +4,7 @@ import { ProductModel } from '../../models/product.model';
 import { Store } from '@ngrx/store';
 import { BasketModel } from '../../models/basket.model';
 import * as BasketActions from "../../state/baskets/baskets.actions"
+import { Stores } from '../../state/stores';
 
 @Component({
   selector: 'app-home',
@@ -15,7 +16,7 @@ import * as BasketActions from "../../state/baskets/baskets.actions"
 export class HomeComponent implements OnInit{
   products: ProductModel[] = [];
   constructor(
-    private store: Store
+    private store: Store<Stores["baskets"]>
   ){
 
   }
