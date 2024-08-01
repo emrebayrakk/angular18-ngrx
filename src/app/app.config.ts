@@ -6,5 +6,5 @@ import { provideStore } from '@ngrx/store';
 import { BasketsReducer } from './state/baskets/baskets.reducer';
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes), provideStore({"basketCount":BasketsReducer})]
+  providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes), provideStore({"baskets":BasketsReducer})]
 };

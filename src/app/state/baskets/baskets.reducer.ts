@@ -1,7 +1,11 @@
+import { createAction, createReducer, on, props } from "@ngrx/store";
+import { BasketModel } from "../../models/basket.model";
+import * as BasketActions from "./baskets.actions"
 
-import { createAction, createReducer, on } from "@ngrx/store";
-
+export const initialState: BasketModel[] = [];
 export const BasketsReducer = createReducer(
-    0,
-    on(createAction("[Baskets] Add Count"),(basketCount) => basketCount +=1)
+    initialState,
+    on(BasketActions.addBasket,(state , {basket}) => {
+        return [...state,basket]
+    })
 )
