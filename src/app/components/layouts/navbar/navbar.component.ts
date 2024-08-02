@@ -4,11 +4,12 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { BasketModel } from '../../../models/basket.model';
 import { Stores } from '../../../state/stores';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,RouterLink],
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })

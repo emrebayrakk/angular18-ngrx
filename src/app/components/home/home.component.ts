@@ -1,44 +1,34 @@
 import { Component,OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common'
 import { ProductModel } from '../../models/product.model';
-import { Store } from '@ngrx/store';
 import { BasketModel } from '../../models/basket.model';
-import * as BasketActions from "../../state/baskets/baskets.actions"
-import { Stores } from '../../state/stores';
+import { RouterLink } from '@angular/router';
+import { ProductService } from '../../services/product.service';
+import { BasketService } from '../../services/basket.service';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,RouterLink],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
 export class HomeComponent implements OnInit{
   products: ProductModel[] = [];
   constructor(
-    private store: Store<Stores["baskets"]>
+    private _product: ProductService,
+    private _basket : BasketService
   ){
-
+    this._product.getList(()=>this.products = _product.products);
+    
   }
   ngOnInit() {
-    this.setProducts();
-  }
-  setProducts(){
-    for(let i=0; i<100; i++){
-      let product = new ProductModel();
-      product.id = (i+1);
-      product.name = 'Product ' + (i+1)
-      product.unitPrice = (i+1)*30;
-      product.stock = (i+1)*10;
-
-      this.products.push(product);
-    }
   }
   addBasket(product:ProductModel){
     let basketModel = new BasketModel();
     basketModel.product = product;
     basketModel.quantity = 1;
 
-    this.store.dispatch(BasketActions.addBasket({basket: basketModel}))
+    this._basket.post(basketModel);
   }
 }

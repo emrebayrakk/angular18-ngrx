@@ -4,7 +4,8 @@ import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
 import { provideStore } from '@ngrx/store';
 import { Reducers } from './state/reducer';
+import { provideHttpClient } from '@angular/common/http';
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes), provideStore(Reducers.baskets)]
+  providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes), provideStore(Reducers.baskets) , provideHttpClient()]
 };
